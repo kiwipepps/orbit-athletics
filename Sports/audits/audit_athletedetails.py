@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from db_utils import supabase
+from Sports.utils.db_utils import supabase
 import time
 from datetime import datetime, timedelta
 from tqdm import tqdm  # 🟢 IMPORT TQDM

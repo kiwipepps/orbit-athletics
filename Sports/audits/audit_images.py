@@ -1,5 +1,5 @@
 from flask import Flask, render_template_string, request, jsonify
-from db_utils import supabase
+from Sports.utils.db_utils import supabase
 from datetime import datetime, timezone
 import json
 

@@ -10,7 +10,7 @@ import undetected_chromedriver as uc
 from tqdm import tqdm
 
 # 🟢 IMPORT SHARED LOGIC
-from db_utils import upsert_entity, upsert_event, supabase, standardize_event_name
+from Sports.utils.db_utils import upsert_entity, upsert_event, supabase, standardize_event_name
 
 # ==========================================
 # 🔧 PART 1: HELPER FUNCTIONS (Cleaned)

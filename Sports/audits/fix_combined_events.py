@@ -1,4 +1,4 @@
-from db_utils import supabase
+from Sports.utils.db_utils import supabase
 from datetime import datetime, timedelta
 
 # 🟢 ROBUST WHITELIST (Space-Insensitive)

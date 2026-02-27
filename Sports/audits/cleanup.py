@@ -1,6 +1,6 @@
 import time
 from datetime import datetime, timedelta
-from db_utils import supabase
+from Sports.utils.db_utils import supabase
 
 def clean_stale_events():
     """

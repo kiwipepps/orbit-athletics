@@ -2,7 +2,7 @@ import time
 import requests
 import re
 # Import shared connection and NEW upsert function
-from db_utils import supabase, upsert_athlete_image
+from Sports.utils.db_utils import supabase, upsert_athlete_image
 
 # =========================
 # CONFIG

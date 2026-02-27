@@ -3,10 +3,10 @@ import re
 import unicodedata
 from datetime import datetime, timezone, timedelta
 import requests
-from db_utils import supabase
+from Sports.utils.db_utils import supabase
 
 # 🟢 IMPORT THE MAP FROM YOUR NEW FILE
-from country_constants import COUNTRY_MAP
+from Sports.utils.country_constants import COUNTRY_MAP
 
 # =========================
 # CONFIG

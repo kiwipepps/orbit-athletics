@@ -1,5 +1,5 @@
 import collections
-from db_utils import supabase
+from Sports.utils.db_utils import supabase
 
 def fetch_all_entities():
     print("⏳ Fetching ALL entities from database (this may take a moment)...")

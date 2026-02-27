@@ -8,7 +8,7 @@ from datetime import datetime
 from tqdm import tqdm
 
 # IMPORT OUR HELPER (Now including standardize_event_name)
-from db_utils import upsert_entity, standardize_event_name
+from Sports.utils.db_utils import upsert_entity, standardize_event_name
 
 def convert_date(date_str):
     try:
