@@ -1,5 +1,11 @@
-from Sports.utils.db_utils import supabase
+import sys
+import os
 from datetime import datetime, timedelta
+
+# 🟢 BULLETPROOF IMPORT PATHING
+# Tells Python to look one folder up to find 'utils'
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from utils.db_utils import supabase
 
 # 🟢 ROBUST WHITELIST (Space-Insensitive)
 SUB_EVENT_whitelist = {

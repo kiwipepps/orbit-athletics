@@ -4,12 +4,16 @@ from dotenv import load_dotenv
 from supabase import create_client, Client
 
 # --- 1. SETUP & CONNECTION ---
-load_dotenv()
+# 🟢 BULLETPROOF .ENV PATHING (Forces it to look one folder up)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+env_path = os.path.abspath(os.path.join(BASE_DIR, "..", ".env"))
+load_dotenv(dotenv_path=env_path)
+
 url = os.getenv("SUPABASE_URL")
 key = os.getenv("SUPABASE_KEY")
 
 if not url or not key:
-    raise ValueError("Missing SUPABASE_URL or SUPABASE_KEY. Please check your .env file.")
+    raise ValueError(f"Missing SUPABASE_URL or SUPABASE_KEY. Please check your .env file at {env_path}")
 
 supabase: Client = create_client(url, key)
 

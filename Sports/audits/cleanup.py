@@ -1,6 +1,12 @@
+import sys
+import os
 import time
 from datetime import datetime, timedelta
-from Sports.utils.db_utils import supabase
+
+# 🟢 BULLETPROOF IMPORT PATHING
+# Tells Python to look one folder up to find 'utils'
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from utils.db_utils import supabase
 
 def clean_stale_events():
     """

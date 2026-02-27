@@ -1,7 +1,13 @@
 from flask import Flask, render_template_string, request, jsonify
-from Sports.utils.db_utils import supabase
 from datetime import datetime, timezone
 import json
+import sys
+import os
+
+# 🟢 BULLETPROOF IMPORT PATHING
+# Tells Python to look one folder up to find 'utils'
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from utils.db_utils import supabase
 
 app = Flask(__name__)
 

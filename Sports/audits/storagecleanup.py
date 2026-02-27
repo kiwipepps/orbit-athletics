@@ -1,4 +1,10 @@
-from Sports.utils.db_utils import supabase
+import sys
+import os
+
+# 🟢 BULLETPROOF IMPORT PATHING
+# Tells Python to look one folder up to find 'utils'
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from utils.db_utils import supabase
 
 BUCKET = "entity-images"
 PREFIX = "athletes/"

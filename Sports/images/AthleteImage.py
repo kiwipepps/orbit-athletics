@@ -1,8 +1,13 @@
+import sys
+import os
 import time
 import requests
 import re
-# Import shared connection and NEW upsert function
-from Sports.utils.db_utils import supabase, upsert_athlete_image
+
+# 🟢 BULLETPROOF IMPORT PATHING
+# Tells Python to look one folder up to find 'utils'
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from utils.db_utils import supabase, upsert_athlete_image
 
 # =========================
 # CONFIG

@@ -1,12 +1,17 @@
+import sys
+import os
 import time
 import re
 import unicodedata
 from datetime import datetime, timezone, timedelta
 import requests
-from Sports.utils.db_utils import supabase
 
-# 🟢 IMPORT THE MAP FROM YOUR NEW FILE
-from Sports.utils.country_constants import COUNTRY_MAP
+# 🟢 BULLETPROOF IMPORT PATHING
+# Tells Python to look one folder up to find 'utils'
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from utils.db_utils import supabase
+from utils.country_constants import COUNTRY_MAP
 
 # =========================
 # CONFIG

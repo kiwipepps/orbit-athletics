@@ -1,21 +1,21 @@
-import time
+import sys
 import os
+import time
 import re
 import pandas as pd
 from datetime import datetime, timedelta
+
+# 🟢 BULLETPROOF IMPORT PATHING
+# Tells Python to look one folder up to find 'utils'
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from utils.db_utils import upsert_entity, upsert_event, supabase, standardize_event_name
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import undetected_chromedriver as uc
 from tqdm import tqdm
 
-# 🟢 IMPORT SHARED LOGIC
-from Sports.utils.db_utils import upsert_entity, upsert_event, supabase, standardize_event_name
-
-# ==========================================
-# 🔧 PART 1: HELPER FUNCTIONS (Cleaned)
-# ==========================================
-# (clean_discipline removed; using standardize_event_name from db_utils)
 
 # ==========================================
 # 🔧 PART 2: ENTITY DETAILS UPDATER
@@ -161,9 +161,10 @@ def build_event_key(event_name_raw: str, round_label: str, meet_name: str) -> st
     key = f"{base}|{rnd}" if rnd else base
     return f"{key}|{meet}"
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-events_dir = os.path.join(current_dir, "World Athletics Events")
-log_file = os.path.join(current_dir, "scraped_log.txt")
+# 🟢 PATH FIXES: Look in the 'data/' folder
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+data_dir = os.path.abspath(os.path.join(BASE_DIR, "..", "data"))
+log_file = os.path.join(data_dir, "scraped_log.txt")
 
 # 🟢 TOGGLE THIS to FORCE RESCRAPE
 FORCE_RESCRAPE = False
@@ -187,13 +188,23 @@ if os.path.exists(log_file) and not FORCE_RESCRAPE:
 
 df = None
 try:
-    if not os.path.exists(events_dir): exit()
-    csv_files = [f for f in os.listdir(events_dir) if f.startswith("world_athletics_events") and f.endswith(".csv")]
-    if not csv_files: exit()
-    latest_file = max(csv_files, key=lambda f: os.path.getmtime(os.path.join(events_dir, f)))
-    df = pd.read_csv(os.path.join(events_dir, latest_file))
-    print(f"📂 Loaded {len(df)} meets.")
-except: driver.quit(); exit()
+    if not os.path.exists(data_dir): 
+        os.makedirs(data_dir, exist_ok=True)
+        
+    csv_files = [f for f in os.listdir(data_dir) if f.startswith("world_athletics_events") and f.endswith(".csv")]
+    
+    if not csv_files:
+        print(f"⚠️ No CSV files found in {data_dir}. Run WorldAthleticsEvents.py first.")
+        driver.quit()
+        exit()
+        
+    latest_file = max(csv_files, key=lambda f: os.path.getmtime(os.path.join(data_dir, f)))
+    df = pd.read_csv(os.path.join(data_dir, latest_file))
+    print(f"📂 Loaded {len(df)} meets from {latest_file}.")
+except Exception as e:
+    print(f"❌ Error loading CSV: {e}")
+    driver.quit()
+    exit()
 
 link_to_date = {}
 if df is not None:

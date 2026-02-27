@@ -122,8 +122,9 @@ start_date = "2026-01-01"
 end_date = "2026-02-13"
 
 # --- Output folder and file ---
+# 🟢 BULLETPROOF PATHING: Route output to the "data/" folder one level up
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-output_dir = os.path.join(BASE_DIR, "World Athletics Events")
+output_dir = os.path.abspath(os.path.join(BASE_DIR, "..", "data"))
 os.makedirs(output_dir, exist_ok=True)
 csv_filename = os.path.join(output_dir, f"world_athletics_events_{start_date}_to_{end_date}.csv")
 

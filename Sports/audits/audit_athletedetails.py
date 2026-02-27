@@ -6,10 +6,16 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from Sports.utils.db_utils import supabase
 import time
 from datetime import datetime, timedelta
 from tqdm import tqdm  # 🟢 IMPORT TQDM
+import sys
+import os
+
+# 🟢 BULLETPROOF IMPORT PATHING
+# Tells Python to look one folder up to find 'utils'
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from utils.db_utils import supabase
 
 # ===========================
 # CONFIGURATION

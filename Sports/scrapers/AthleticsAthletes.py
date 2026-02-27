@@ -6,9 +6,14 @@ from selenium.webdriver.support import expected_conditions as EC
 import undetected_chromedriver as uc
 from datetime import datetime
 from tqdm import tqdm
+import sys
+import os
 
-# IMPORT OUR HELPER (Now including standardize_event_name)
-from Sports.utils.db_utils import upsert_entity, standardize_event_name
+# 🟢 BULLETPROOF IMPORT PATHING
+# This tells Python to look one folder up (in the Sports folder) so it can find 'utils'
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from utils.db_utils import upsert_entity, standardize_event_name
 
 def convert_date(date_str):
     try:

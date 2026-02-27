@@ -1,5 +1,11 @@
+import sys
+import os
 import collections
-from Sports.utils.db_utils import supabase
+
+# 🟢 BULLETPROOF IMPORT PATHING
+# Tells Python to look one folder up to find 'utils'
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from utils.db_utils import supabase
 
 def fetch_all_entities():
     print("⏳ Fetching ALL entities from database (this may take a moment)...")
